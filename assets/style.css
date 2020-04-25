@@ -1,0 +1,35 @@
+.center{
+    text-align: center;
+}
+.myNav{
+    position: relative;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.navFont{
+    font-size: 2rem;
+}
+.searchArea{
+    background-color: rgb(247, 247, 247);
+}
+.fiveDay{
+margin: .6em;
+background-color: blue;
+color: white;
+}
+#img1,#img2,#img3,#img4,#img5,#imgCurrent{
+    max-width: 50px;
+}
+
+#cityWeather{
+    float: left;
+}
+#imgCurrent{
+    display: inline;
+    float: left;
+}
+#temp, #humidity{
+    clear:both;
+}
