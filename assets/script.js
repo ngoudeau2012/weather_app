@@ -2,8 +2,12 @@ var searchCity=""
 $(".btn").on("click",function(){
     //Running the initial search
     searchCity = $("input").val();
+    $(".hide").removeClass("hide")
+    
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=87ccf6bee6059963f3a267ce98ef3eba"
     
+    saveSearch(searchCity)
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -13,8 +17,7 @@ $(".btn").on("click",function(){
 
         var lon = response.coord.lon
         var lat = response.coord.lat
-        console.log("Lon= "+ lon);
-        console.log("Lat= "+ lat);
+
         
         getWeatherData(lat,lon)
     })
@@ -46,10 +49,6 @@ function getWeatherData(latitude,longitude){
             var fDate = response.daily[i].dt;
 
             getDate(fDate)
-            console.log(fWeatherIcon);
-            console.log(fTemp);
-            console.log(fHumid);
-            console.log(convertData1);
 
             $("#date"+[i]).text(convertData1);
             $("#img"+[i]).attr("src","http://openweathermap.org/img/wn/" + fWeatherIcon + ".png");
@@ -69,8 +68,15 @@ function printCurrentData(city,temp,hum,wind,uv,dt,icon){
     $("#temp").text("Temperature: " + temp + " °F");
     $("#humidity").text("Humidity: " + hum + "%");
     $("#windSpeed").text("Wind Speed: " + wind + " mph")
-    $("#uvIndex").text("UV Index: " + uv);
+    $("#uvIndex").text(uv);
 
+    if(uv > 2 && uv < 6){
+        $("#uvIndex").attr("class","card moderate")
+    } else if(uv > 6){
+        $("#uvIndex").attr("class","card high")
+    } else {
+        $("#uvIndex").attr("class","card low")
+    }
     
 }
 
@@ -83,4 +89,21 @@ function getDate(unixTime){
     
     var convertData = month + '/' + day + '/' + year;
     window.convertData1 = convertData;
+}
+var citiesArr = [];
+function saveSearch(search){
+    $(".list-group").empty();
+    citiesArr.push(search);
+    
+    
+    localStorage.setItem("cities",JSON.stringify(citiesArr));
+
+    var myLocalArr = JSON.parse(localStorage.getItem("cities"));
+    console.log(myLocalArr);
+
+    for(i = 0; i < myLocalArr.length; i++){
+        var newListEl = $("<li>").text(myLocalArr[i])
+        newListEl.attr("class","list-group-item")
+        $(".list-group").append(newListEl)
+    }
 }

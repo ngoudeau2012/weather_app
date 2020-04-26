@@ -16,7 +16,7 @@
 }
 .fiveDay{
 margin: .6em;
-background-color: blue;
+background-color: #086972;
 color: white;
 }
 #img1,#img2,#img3,#img4,#img5,#imgCurrent{
@@ -32,4 +32,29 @@ color: white;
 }
 #temp, #humidity{
     clear:both;
+}
+.low{
+    display: inline;
+    background-color:#21e6c1;
+    padding: .2em;
+}
+.moderate{
+    display: inline;
+    background-color:#fff98c;
+    padding: .2em;
+}
+.high{
+    display: inline;
+    background-color:#ee5a5a;
+    padding: .2em;
+}
+
+.fiveDayDate{
+    margin-top:.5em;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.hide{
+    display: none;
 }
