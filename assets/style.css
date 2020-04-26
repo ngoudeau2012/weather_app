@@ -1,3 +1,6 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
 .center{
     text-align: center;
 }
@@ -10,9 +13,11 @@
 }
 .navFont{
     font-size: 2rem;
+    font-weight: bold;
 }
 .searchArea{
     background-color: rgb(247, 247, 247);
+    font-weight: bold;
 }
 .fiveDay{
 margin: .6em;
@@ -48,7 +53,9 @@ color: white;
     background-color:#ee5a5a;
     padding: .2em;
 }
-
+.header{
+    font-weight: bold;
+}
 .fiveDayDate{
     margin-top:.5em;
     font-size: 1.5em;
