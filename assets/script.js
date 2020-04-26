@@ -52,7 +52,7 @@ function getWeatherData(latitude,longitude){
 
             $("#date"+[i]).text(convertData1);
             $("#img"+[i]).attr("src","http://openweathermap.org/img/wn/" + fWeatherIcon + ".png");
-            $("#temp"+[i]).text("Temp: "+fTemp);
+            $("#temp"+[i]).text("Temp: "+fTemp + " °F");
             $("#humid"+[i]).text("Humidity: " + fHumid + "%");
 
         }
