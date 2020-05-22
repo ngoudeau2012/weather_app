@@ -1,27 +1,41 @@
-var searchCity=""
+var searchCity="";
 $(".btn").on("click",function(){
-    //Running the initial search
     searchCity = $("input").val();
-    $(".hide").removeClass("hide")
+    getWeather(searchCity);
+    saveSearch(searchCity);
+})
+
+$(".list-group").on("click", "li",function(){
+    var listEl = $(this);
+    searchCity = listEl.text();
+    console.log(searchCity);
+    getWeather(searchCity);
+})
+
+function getWeather(){
+    //Running the initial search
     
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=87ccf6bee6059963f3a267ce98ef3eba"
     
-    saveSearch(searchCity)
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=87ccf6bee6059963f3a267ce98ef3eba";
+    
+    
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response){
         // Getting all Variables needed for next call
-        console.log(response)
+        console.log(response);
 
-        var lon = response.coord.lon
-        var lat = response.coord.lat
+        var lon = response.coord.lon;
+        var lat = response.coord.lat;
 
         
-        getWeatherData(lat,lon)
+        getWeatherData(lat,lon);
+        $(".hide").removeClass("hide");
     })
-})
+}
 
 // current and forecast weather data ajax call
 function getWeatherData(latitude,longitude){
